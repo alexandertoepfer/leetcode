@@ -5,6 +5,7 @@ public:
         int ans = 0; // Longest substring length
         vector<int> charIndex(128, -1);
         for (right = 0; right < s.length(); right++) {
+            // Update left if we hit a character that already occured (omit invalid substring)
             if (charIndex[s[right]] >= left) {
                 left = charIndex[s[right]] + 1;
             }
