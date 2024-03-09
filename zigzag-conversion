@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        // Edge case: If numRows is 1 or less, the string remains unchanged
+        if (numRows <= 1) return s;
+
+        // Create a vector of strings to store characters in each row
+        vector<string> v(numRows, "");
+
+        // Initialize variables: j for row index, dir for direction of movement
+        int j = 0, dir = -1;
+
+        // Iterate through each character in the input string
+        for (int i = 0; i < s.length(); i++) {
+            // Change direction when reaching the first or last row
+            if (j == numRows - 1 || j == 0)
+                dir *= (-1);
+
+            // Add the current character to the corresponding row
+            v[j] += s[i];
+
+            // Move to the next row based on the direction
+            if (dir == 1)
+                j++;
+            else
+                j--;
+        }
+
+        // Concatenate the rows to obtain the zigzag conversion result
+        string ans;
+        for (auto &it : v)
+            ans += it;
+
+        return ans;
+    }
+};
